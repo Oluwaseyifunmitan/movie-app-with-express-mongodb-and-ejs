@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+      integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
+      crossorigin="anonymous"
+    />
+    <title>Movies</title>
+  </head>
+  <body style="position: relative; z-index: 100;">
+    <div class="container" style="position: relative; top:30px">
+      <div class="row">
+        <div class="col-md-12">
+          <nav class="nav nav-pills nav-fill">
+            <a class="nav-link" href="/">HOME</a>
+            <a class="nav-link" href="/user/login">LOGIN</a>
+            <a class="nav-link active" href="/movie/getmovies">MOVIE</a>
+            <a class="nav-link" href="/user/create">REGISTER</a>
+            <a class="nav-link" href="/">LOGOUT</a>
+          </nav>
+        </div>
+        </div>
+        <main>
+          <div class="album py-5 bg-light">
+            <div class="container">
+              <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                <% movies.forEach((item) => { %>
+                <div class="col" style="display: flex">
+                  <div class="card shadow-sm">
+                    <%if(!item?.image){%>
+                    <svg
+                      class="bd-placeholder-img card-img-top"
+                      width="100%"
+                      height="225"
+                      xmlns="http://www.w3.org/2000/svg"
+                      role="img"
+                      aria-label="Placeholder: Thumbnail"
+                      preserveAspectRatio="xMidYMid slice"
+                      focusable="false"
+                      style="display: flex; padding: 20px"
+                    >
+                      <title>Placeholder</title>
+                      <rect width="100%" height="300px" fill="#55595c" />
+                      <text x="90%" y="50%" fill="#eceeef" dy=".3em"></text>
+                    </svg>
+                    <%} else {%>
+                    <img
+                      style="
+                        position: relative;
+                        max-height: 300px;
+                        padding: 20px;
+                        width: 100%;
+                        justify-content: center;
+                        object-fit: contain;
+                        display: flex;
+                        flex: 1;
+                      "
+                      src="<%=item.image%>"
+                      alt=" image"
+                      srcset=""
+                    />
+                    <%}%>
+                    <div class="card-body">
+                      <p class="card-text"><%=item.description%></p>
+                      <div
+                        class="d-flex justify-content-between align-items-center"
+                      >
+                        <div class="btn-group">
+                          <button type="button" class="btn btn-danger" onclick="handleDelete()"><a href="/user/dashboard">Delete</a> </button>
+                          <button type="button" class="btn btn-secondary" onclick="handleUpdate()"><a href="/user/dashboard">Edit</a></button>
+  
+                        </div>
+                        <small class="text-muted">
+                          <strong>price <%=item.price %> </strong></small
+                        >
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <% }) %>
+              </div>
+            </div>
+          </div>
+        </main>
+    
+    
+  </body>
+</html>
